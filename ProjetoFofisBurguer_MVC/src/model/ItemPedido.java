@@ -1,3 +1,5 @@
+package model;
+
 public class ItemPedido {
 
     Produto produto;
@@ -35,5 +37,17 @@ public class ItemPedido {
 
     public boolean estaPago() {
         return quantidadePaga == quantidade;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public int getQuantidadePaga() {
+        return quantidadePaga;
+    }
+
+    public Produto getProduto() {
+        return produto;
     }
 }

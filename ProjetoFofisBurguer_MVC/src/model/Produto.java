@@ -1,3 +1,5 @@
+package model;
+
 public class Produto {
 
     String nome;
@@ -14,5 +16,17 @@ public class Produto {
         this.nome = nome;
         this.preco = preco;
         this.categoria = categoria;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public String getCategoria() {
+        return categoria;
     }
 }

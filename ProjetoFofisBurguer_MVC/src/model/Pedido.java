@@ -1,3 +1,5 @@
+package model;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,6 +18,10 @@ public class Pedido {
         this.data = LocalDate.now();
     }
 
+    public ArrayList<ItemPedido> getItens() {
+        return itens;
+    }
+
     public void adicionarItem(ItemPedido item) {
         if (item == null) {
             throw new IllegalArgumentException("Item invalido");
@@ -31,23 +37,18 @@ public class Pedido {
 
     public double total() {
         double total = 0;
-        for (ItemPedido i : itens) {
-            total += i.subtotal();
-        }
+        for (ItemPedido i : itens) total += i.subtotal();
         return total;
     }
 
     public double totalEmAberto() {
         double total = 0;
-        for (ItemPedido i : itens) {
-            total += i.valorEmAberto();
-        }
+        for (ItemPedido i : itens) total += i.valorEmAberto();
         return total;
     }
 
     public boolean estaTotalmentePago() {
         if (itens.isEmpty()) return false;
-
         for (ItemPedido i : itens) {
             if (!i.estaPago()) return false;
         }
@@ -55,8 +56,8 @@ public class Pedido {
     }
 
     public String status() {
-        if (itens.isEmpty())       return "aberto";
-        if (estaTotalmentePago())  return "pago";
+        if (itens.isEmpty())          return "aberto";
+        if (estaTotalmentePago())     return "pago";
         if (totalEmAberto() < total()) return "parcial";
         return "aberto";
     }
@@ -64,5 +65,13 @@ public class Pedido {
     public String getDataFormatada() {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return data.format(fmt);
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public String getCliente() {
+        return cliente;
     }
 }
